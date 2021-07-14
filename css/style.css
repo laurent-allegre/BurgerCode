@@ -1,0 +1,97 @@
+body{
+    background: url(../images/bg.png) ;
+}
+
+.site{
+    font-family: 'Holtwood One SC', sans-serif;
+}
+
+.text-logo{
+    font-family: 'Holtwood One SC', sans-serif;
+    color: #e7480f;
+    text-shadow: 2px 2px #ffd301;
+    font-size: 50px;
+    padding: 40px 0px;
+    text-align: center;
+}
+
+.site span{
+    color: #ffd301;
+    text-shadow: 2px 1px  #e7480f;
+}
+
+.nav{
+    margin-bottom: 40px;
+}
+
+.card img{
+    background-color: #ffd301;
+}
+
+.price{
+    background: #5cb85c;
+    box-shadow: 0 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px rgba(0,0,0,0.2);
+    color: #fff;
+    text-shadow: 2px 2px #333;
+    position: absolute;
+    right: -8px;
+    top: 20px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+.price::before{
+    border: 4px solid transparent;
+    border-bottom: 4px solid #4a934a;
+    border-left: 4px solid #4a934a;
+    content: "";
+    position: absolute;
+    right: 1px;
+    top: -8px;
+}
+
+.card h5{
+    color: #e7480f;
+    font-size: 20px;
+    
+}
+
+.nav-link{
+    color: #fff;
+    text-shadow: 2px 2px #333;
+}
+
+.nav-item a:hover{
+    color: #e7480f;
+    background-color: #eee;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #e7480f;
+}
+
+.btn_commande{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #e7480f;
+    text-decoration: none;
+    text-shadow: 1px 1px #333;
+}
+
+.btn_commande:hover, .btn_commande:focus{
+    color: #fff;
+    background-color: #af3b10;
+    text-decoration: none;
+}
+
+.card span{
+    margin-right: 6px;
+}
+.card a{
+    text-align: center;
+}
