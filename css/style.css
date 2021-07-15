@@ -95,3 +95,13 @@ body{
 .card a{
     text-align: center;
 }
+
+/*====================================PAGE ADMIN========================================*/
+
+.admin{
+    z-index: 999;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    
+}
