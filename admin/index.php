@@ -16,8 +16,8 @@
 
             <h1 class="text-logo site"><span class="fas fa-utensils "></span> Burger Code <span class="fas fa-utensils"></span></h1>
             <div class="container admin">
-                <div class="row">
-                    <h2><strong>Liste des Items :</strong><a href="#" type="button"class="btn btn-success btn-lg"><span class="fas fa-plus"></span> Ajouter</a></h2>
+                <div class="row table-responsive">
+                    <h2><strong>Liste des Items :</strong><a href="#" type="button"class="btn btn-success btn-sm ml-3"><span class="fas fa-plus"></span> Ajouter</a></h2>
                 
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -30,17 +30,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td width=350>
-                                <a href="view.php" type="button"class="btn btn-outline-secondary"><span class="fas fa-eye"></span>  voir</a>
-                                <a href="update.php" type="button"class="btn btn-primary"><span class="fas fa-edit"></span>  Modifier</a>
-                                <a href="delete.php" type="button"class="btn btn-danger"><span class="fas fa-cut"></span>  Supprimer</a>
-                                </td>
-                            </tr>
+                            <?php
+                                require 'database.php';
+                                $db = Database::connect();
+                                $statement = $db->query('SELECT items.id, items.name, items.description, items.price, categories.name AS category FROM items LEFT JOIN categories ON items.category = categories.id
+                                                         ORDER BY items.id DESC');
+                                while($item = $statement->fetch())
+                                {
+                                echo '<tr>';
+                                  echo '<td>' . $item['name'] . '</td>'; 
+                                  echo '<td>' . $item['description'] . '</td>'; 
+                                  echo '<td>' . $item['price'] . '0 €</td>'; 
+                                  echo '<td>' . $item['category'] . '</td>'; 
+
+                                  echo '<td class="action">';
+                                  echo '<a type="button"class="btn btn-outline-secondary btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-eye"></span>  voir</a>';
+                                  echo ' ';
+                                  echo '<a type="button"class="btn btn-primary btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Modifier</a>';
+                                  echo ' ';
+                                  echo '<a type="button"class="btn btn-danger btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Supprimer</a>';
+                                  
+                                  echo '</td>';     
+                                echo '</tr>';    
+
+                                }
+                            ?>
+                           
+                            
                         </tbody>
                     </table>
                 </div>
