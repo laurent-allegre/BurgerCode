@@ -60,7 +60,7 @@
              }
              if($isUploadSuccess)
              {
-                 if(!move_uploaded_file($_FILES['$image']['tmp_name'], $imagePath))
+                 if(!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath))
                  {
                     $imageError = "Il y a eu une erreur lors de l'upload ";
                     $isUploadSuccess = false;
@@ -70,8 +70,8 @@
             if($isSuccess && $isUploadSuccess)
             {
                 $db = Database::connect();
-                $statement = $db->prepare("INSERT INTO items(name, description, price, category, image) VALUES(?, ?, ?, ?; ?)");
-                $statement->execute(array($name, $description, $price, $category, $image));
+                $statement = $db->prepare("INSERT INTO items (name,description,price,category,image) values(?, ?, ?, ?, ?)");
+                $statement->execute(array($name,$description,$price,$category,$image));
                 Database::disconnect();
                 header('Location: index.php');
             }

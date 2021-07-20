@@ -133,3 +133,9 @@ body {
 .help-inline{
   color: red;
 }
+
+.bordure{
+  border-width:1px;
+ border-style:solid;
+ border-color:rgb(182, 177, 177);
+}

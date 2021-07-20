@@ -153,7 +153,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                            <div class="col-6 col-sm-6">
+                                            <div class="col-5 col-sm-5">
                                                 <h1>Modifier un Items :</h1><br>
                                                 <form class="form" role="form" action="<?= 'update.php?id=' . $id; ?>" method="post" enctype="multipart/form-data">
                                                     <div class="form-group">
@@ -208,8 +208,8 @@
                                                     </div>
                                                 </form> 
                                             </div>
-                                                <div class="col-6 site">
-                                                    <img class="img-fluid" src="<?= '../images/' . $image; ?>" alt="sans" >
+                                                <div class="col-7 site bordure">
+                                                    <img class="img-fluid mt-2" src="<?= '../images/' . $image; ?>" alt="sans" >
                                                         <p class="price"><?= number_format((float) $price,2,'.',''). ' €'; ?></p> 
                                                         <h5 class="card-title"><?= $name; ?></h5>
                                                         <p ><?= $description; ?></p>

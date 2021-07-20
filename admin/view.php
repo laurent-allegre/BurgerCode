@@ -58,8 +58,8 @@ function checkInput($data)
                                         <p class="card-text"><strong>Image: </strong> <?= ' ' . $item['image']; ?></p>
                                         <a href="index.php" type="button"class="btn btn-success btn-sm"><span class="fas fa-arrow-left"></span> Retour</a>
                                     </div>
-                                    <div class="col-sm-6 site">
-                                        <img class="img-fluid" src="<?= '../images/' . $item['image']; ?>" alt="sans" >
+                                    <div class="col-sm-6 site bordure">
+                                        <img class="img-fluid mt-2" src="<?= '../images/' . $item['image']; ?>" alt="sans" >
                                         <p class="price"><?= number_format((float) $item['price'],2,'.',''). ' €'; ?></p> 
                                         <h5 class="card-title"><?= $item['name']; ?></h5>
                                         <p ><?= $item['description']; ?></p>
