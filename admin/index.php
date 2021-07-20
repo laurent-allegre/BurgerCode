@@ -17,7 +17,7 @@
             <h1 class="text-logo site"><span class="fas fa-utensils "></span> Burger Code <span class="fas fa-utensils"></span></h1>
             <div class="container admin">
                 <div class="row table-responsive">
-                    <h2><strong>Liste des Items :</strong><a href="#" type="button"class="btn btn-success btn-sm ml-3"><span class="fas fa-plus"></span> Ajouter</a></h2>
+                    <h2><strong>Liste des Items :</strong><a href="insert.php" type="button"class="btn btn-success btn-sm ml-3"><span class="fas fa-plus"></span> Ajouter</a></h2>
                 
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -40,20 +40,21 @@
                                 echo '<tr>';
                                   echo '<td>' . $item['name'] . '</td>'; 
                                   echo '<td>' . $item['description'] . '</td>'; 
-                                  echo '<td>' . $item['price'] . '0 €</td>'; 
+                                  echo '<td>' . number_format((float) $item['price'],2,'.','') . '€</td>'; 
                                   echo '<td>' . $item['category'] . '</td>'; 
 
                                   echo '<td class="action">';
                                   echo '<a type="button"class="btn btn-outline-secondary btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-eye"></span>  voir</a>';
                                   echo ' ';
-                                  echo '<a type="button"class="btn btn-primary btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Modifier</a>';
+                                  echo '<a type="button"class="btn btn-primary btn-sm" href="update.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Modifier</a>';
                                   echo ' ';
-                                  echo '<a type="button"class="btn btn-danger btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Supprimer</a>';
+                                  echo '<a type="button"class="btn btn-danger btn-sm" href="delete.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Supprimer</a>';
                                   
                                   echo '</td>';     
                                 echo '</tr>';    
 
                                 }
+                                Database::disconnect(); 
                             ?>
                            
                             
@@ -63,34 +64,7 @@
             </div>
     
 
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
