@@ -154,7 +154,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
                        
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"><span class="fas fa-pencil-alt"> Ajouter</span></button>
-                                <a href="index1.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
+                                <a href="index.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
                             </div>
                         </form>    
                     </div>
@@ -165,7 +165,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
 
 <!-- SI ON EST PAS CONNECTER ON AFFICHE LA PAGE D'ACCUEIL -->
 <?php } else {
-    header("location: ./");
+    header("location: ../index.php");
 } ?>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

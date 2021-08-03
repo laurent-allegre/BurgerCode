@@ -211,7 +211,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
                                             
                                                     <div class="form-actions">
                                                         <button type="submit" class="btn btn-success"><span class="fas fa-pencil-alt"> Modifier</span></button>
-                                                        <a href="index1.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
+                                                        <a href="index.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
                                                     </div>
                                                 </form> 
                                             </div>
@@ -233,7 +233,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
 
 <!-- SI ON EST PAS CONNECTER ON AFFICHE LA PAGE D'ACCUEIL -->
 <?php } else {
-    header("location: ./");
+    header("location: ../index.php");
 } ?>
 
         

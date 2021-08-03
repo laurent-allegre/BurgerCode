@@ -65,7 +65,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
                                         <p class="card-text"><strong>Prix: </strong> <?= ' ' . number_format((float) $item['price'],2,'.','') . ' €'; ?></p>
                                         <p class="card-text"><strong>Catégories: </strong> <?= ' ' . $item['category']; ?></p>
                                         <p class="card-text"><strong>Image: </strong> <?= ' ' . $item['image']; ?></p>
-                                        <a href="index1.php" type="button"class="btn btn-success btn-sm"><span class="fas fa-arrow-left"></span> Retour</a>
+                                        <a href="index.php" type="button"class="btn btn-success btn-sm"><span class="fas fa-arrow-left"></span> Retour</a>
                                     </div>
                                     <div class="col-sm-6 site bordure">
                                         <img class="img-fluid mt-2" src="<?= '../images/' . $item['image']; ?>" alt="sans" >
@@ -87,7 +87,7 @@ if(!empty($_SESSION) && isset($_SESSION["login"])) {
             </section>
 <!-- SI ON EST PAS CONNECTER ON AFFICHE LA PAGE D'ACCUEIL -->
 <?php } else {
-    header("location: index.php");
+    header("location: ../index.php");
 } ?>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

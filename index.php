@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container site">
-        <h1 class="text-logo"><span class="fas fa-utensils "></span> Burger Code <span class="fas fa-utensils"></span></h1>
+        <h1 class="text-logo"><span class="fas fa-utensils "></span> Burger Code <a href="./admin/login.php"><span class="fas fa-utensils"></span></a> </h1>
         
 
         <?php
