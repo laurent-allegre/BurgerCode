@@ -21,7 +21,7 @@
         //================================================   BARRE DES MENUS  ================================//
             echo '
                 <nav>
-                 <ul class="nav nav-pills">';
+                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">';
 
             $db = Database::connect();
             $statement = $db->query('SELECT * From categories');
@@ -30,14 +30,14 @@
             {
                 if($categorie['id'] == '1')
                 {
-                    echo '<li role="presentation" class="nav-item">
-                            <a <a href="#'. $categorie['id'] . '" data-toggle="tab" class="nav-link active">' . $categorie['name'] .'</a> 
-                        </li>';
+                    echo '<li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#'. $categorie['id'] . '" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                         </li>';
                 }
                 else 
                 {
-                    echo '<li role="presentation" class="nav-item">
-                            <a class="nav-link"  data-toggle="tab"  href="#' . $categorie['id'] .'">' . $categorie['name'] .'</a> 
+                    echo '<li  class="nav-item">
+                             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#'. $categorie['id'] . '" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a> 
                         </li>';
                 }
             }
@@ -49,11 +49,14 @@
                     {
                     
                         if($categorie['id'] == '1') 
+                        {
                             echo '<div class="tab-pane active" id="'. $categorie['id'] . '">';
-                        
-                        else 
+                        }
+                        else
+                        { 
                             echo '<div class="tab-pane" id="' .$categorie['id']. '">';
-                        
+                           echo '<div class="tab-pane fade" id="' .$categorie['id']. '" role="tabpanel" aria-labelledby="'. $categorie['id'] . '">... YO MAN</div>' ;
+                        }
 
                         echo ' <div class="row">';
 
@@ -84,8 +87,28 @@
             echo '</div>';
         ?>
     </div>
+             <?php 
+             echo '     
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#'. $categorie['id'] . '" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">COUCOU</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">..yoyoy.</div>
+                    </div>';
+
+            ?>          
     
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </body>
 </html>

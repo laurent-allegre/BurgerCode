@@ -1,4 +1,15 @@
 <?php
+    function checkInput($data)
+    {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    }
+    session_name("login");
+session_start();
+
+if(!empty($_SESSION) && isset($_SESSION["login"])) {
      require 'database.php';
 
      if(!empty($_GET['id']))
@@ -121,14 +132,10 @@
      }
 
 
-    function checkInput($data)
-    {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-    }
+    
+  
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -204,7 +211,7 @@
                                             
                                                     <div class="form-actions">
                                                         <button type="submit" class="btn btn-success"><span class="fas fa-pencil-alt"> Modifier</span></button>
-                                                        <a href="index.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
+                                                        <a href="index1.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
                                                     </div>
                                                 </form> 
                                             </div>
@@ -224,7 +231,10 @@
 
             
 
-
+<!-- SI ON EST PAS CONNECTER ON AFFICHE LA PAGE D'ACCUEIL -->
+<?php } else {
+    header("location: ./");
+} ?>
 
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

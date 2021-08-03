@@ -1,73 +1,136 @@
+
+<?php
+//declare(strict_types= 1);
+
+
+session_name ("login");
+session_start();
+
+require 'database.php';
+include_once __DIR__ . "/functions.php";
+
+
+
+$erreur = false;
+
+
+$login = " ";
+
+if(isset($_POST) && !empty($_POST)) {
+
+    $login = validateForm($_POST["login"]);
+    $password = trim($_POST["password"]) ;
+
+    if(strpos($login, "&gt;") > 0) {
+        header("location: honney.php");
+    }
+
+    $admin = signIn($login, $password);
+
+    if (!empty($admin)) {
+        if ($admin["id"] > 0) {
+            $_SESSION["login"] = $admin["login"];
+            header("Location: index1.php");
+        } else {
+            $erreur = true;
+        }
+    } else {
+        $erreur = true;
+    }
+
+}
+
+?>
 <!DOCTYPE html>
-<html lang="fr">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Holtwood+One+SC" type="text/css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <title>Impérials Burger Code</title>
-    </head>
-
-    <body>
-
-            <h1 class="text-logo site"><span class="fas fa-utensils "></span> Burger Code <span class="fas fa-utensils"></span></h1>
-            <div class="container admin">
-                <div class="row table-responsive">
-                    <h2><strong>Liste des Items :</strong><a href="insert.php" type="button"class="btn btn-success btn-sm ml-3"><span class="fas fa-plus"></span> Ajouter</a></h2>
-                
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Noms</th>
-                                <th>Descriptions</th>
-                                <th>Prix</th>
-                                <th>Catégories</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                require 'database.php';
-                                $db = Database::connect();
-                                $statement = $db->query('SELECT items.id, items.name, items.description, items.price, categories.name AS category FROM items LEFT JOIN categories ON items.category = categories.id
-                                                         ORDER BY items.id DESC');
-                                while($item = $statement->fetch())
-                                {
-                                echo '<tr>';
-                                  echo '<td>' . $item['name'] . '</td>'; 
-                                  echo '<td>' . $item['description'] . '</td>'; 
-                                  echo '<td>' . number_format((float) $item['price'],2,'.','') . '€</td>'; 
-                                  echo '<td>' . $item['category'] . '</td>'; 
-
-                                  echo '<td class="action">';
-                                  echo '<a type="button"class="btn btn-outline-secondary btn-sm" href="view.php?id=' . $item['id'] .'"><span class="fas fa-eye"></span>  voir</a>';
-                                  echo ' ';
-                                  echo '<a type="button"class="btn btn-primary btn-sm" href="update.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Modifier</a>';
-                                  echo ' ';
-                                  echo '<a type="button"class="btn btn-danger btn-sm" href="delete.php?id=' . $item['id'] .'"><span class="fas fa-edit"></span>  Supprimer</a>';
-                                  
-                                  echo '</td>';     
-                                echo '</tr>';    
-
-                                }
-                                Database::disconnect(); 
-                            ?>
-                           
-                            
-                        </tbody>
-                    </table>
+    <html lang="fr">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+            <link rel="stylesheet" href="../css/style.css">
+            <title>Admin Burger-Code</title>
+        </head>
+        <body>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+                <a class="navbar-brand" href="#">Web-productions</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.php">Retour Accueil</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-    
+            </nav>
 
- 
+            <!--====== Formulaire de contact ========-->
+            <section id="cover1" class="min-vh-100">
+                <div id="cover-caption1">
+                    <div class="container">
+                        <div class="row text-white">
+                            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                                <h1 class="display-4 py-2 text-truncate text-white">Administration</h1>
+                                <div class="px-2">
+                                    <form action="" id="form" method="post" class="justify-content-center">
+                                        <div class="form-group">
+                                            <label class="sr-only">Email</label>
+                                            <input type="text" id="login" name="login" class="form-control" placeholder="Login">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only">Mot de passe</label>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="****">
+                                        </div>
+                                        <button type="submit" class="btn btn-info btn-lg">Soumettre</button>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    </body>
+                                        <?php if($erreur){ ?>
+                                            <div class="alert alert-danger">
+                                                <h6 class="alert-title">Erreur</h6>
+                                                <p>Impossible de vous connecter</p>
+                                                <hr>
+                                                <pre>Veuillez vérifier vos saisies</pre>
+                                            </div>
 
-</html>
+                                        <?php } ?>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer class="page-footer bg-dark text-white  font-small blue">
+                <div class="container">
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                        <a href="https://web-concept-site.fr/">Web-Concept-site</a>
+                    </div>
+                    <!-- Copyright -->
+                    <!-- Social buttons -->
+                    <ul class="list-unstyled list-inline text-center">
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-li mx-1">
+                                <a href="https://www.linkedin.com/in/laurent-allegre-72225a93/"><i class="fab fa-linkedin-in"> </i></a>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-github mx-1">
+                                <a href="https://github.com/laurent-allegre"><i class="fab fa-github"> </i></a>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Social buttons -->
+            </footer>
+            <!-- Footer -->
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="../assets/js/app.js"></script>
+        </body>
+    </html>

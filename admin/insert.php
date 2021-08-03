@@ -1,4 +1,12 @@
 <?php
+
+
+session_name("login");
+session_start();
+
+if(!empty($_SESSION) && isset($_SESSION["login"])) {
+?>
+<?php
      require 'database.php';
 
      $nameError = $descriptionError = $priceError = $categoryError = $imageError = $name = $description = $price = $category =$price = "";
@@ -146,7 +154,7 @@
                        
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"><span class="fas fa-pencil-alt"> Ajouter</span></button>
-                                <a href="index.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
+                                <a href="index1.php" type="button"class="btn btn-primary"><span class="fas fa-arrow-left"> Retour</span></a>
                             </div>
                         </form>    
                     </div>
@@ -155,7 +163,10 @@
             
 
 
-
+<!-- SI ON EST PAS CONNECTER ON AFFICHE LA PAGE D'ACCUEIL -->
+<?php } else {
+    header("location: ./");
+} ?>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
